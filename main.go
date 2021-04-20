@@ -1,7 +1,7 @@
 package main
 
-import "fmt"
+import _ "CSForum/init"
 
 func main() {
-	fmt.Println("hello world")
+
 }

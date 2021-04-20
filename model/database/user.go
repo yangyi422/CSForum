@@ -1,1 +1,20 @@
 package database
+
+import (
+	"gorm.io/gorm"
+)
+
+type User struct {
+	gorm.Model
+	UserId      uint64 `gorm:"column:user_id;index:idx_user_id;comment:'用户ID'"` // 用户ID
+	Birthday    string `gorm:"column:birthday;comment:'用户生日'"`                  // 用户生日
+	Age         uint   `gorm:"column:age;comment:'用户年龄'"`                       // 用户年龄
+	Name        string `gorm:"column:name;index:idx_user_name;comment:'用户姓名'"`  // 用户姓名
+	Phone       string `gorm:"column:phone;comment:'用户手机号'"`                    // 用户手机号
+	Email       string `gorm:"column:email;comment:'用户邮箱'"`                     // 用户邮箱
+	Password    string `gorm:"column:password;comment:'用户密码'"`                  // 用户密码
+	Salt        string `gorm:"column:salt;comment:'密码-盐'"`                      // 密码-盐
+	Address     string `gorm:"column:address;comment:'用户地址'"`                   // 用户地址
+	Description string `gorm:"column:description;comment:'用户描述'"`               // 用户描述
+	Status      string `gorm:"column:status;comment:'用户状态'"`                    // 用户状态
+}
