@@ -36,7 +36,7 @@ var (
 		IP:             MYSQL_IP,
 		PORT:           MYSQL_PORT,
 		Config:         snk_db_config,
-		Db_name:        "mysql",
+		Db_name:        "CSForum",
 		User_name:      "root",
 		Password:       MYSQL_PASSWORD,
 		Max_idle_conns: 21,
