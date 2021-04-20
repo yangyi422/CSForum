@@ -1,7 +1,13 @@
 package main
 
-import "fmt"
+import (
+	"CSForum/initialization"
 
-func main()  {
-	fmt.Println("hello world")
+	"github.com/gin-gonic/gin"
+)
+
+func main() {
+	var Router = gin.Default()
+	initialization.InitRouter(Router)
+	Router.Run()
 }
