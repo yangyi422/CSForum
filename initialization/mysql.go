@@ -1,4 +1,4 @@
-package init
+package initialization
 
 import (
 	"CSForum/config"
@@ -9,11 +9,11 @@ import (
 	"gorm.io/gorm"
 )
 
-var db *gorm.DB
+var DB *gorm.DB
 
 func init() {
 	init_mysql()
-	get_mysql_tables(db)
+	get_mysql_tables(DB)
 }
 
 func init_mysql() {
@@ -29,10 +29,10 @@ func init_mysql() {
 
 	}
 	var err error
-	if db, err = gorm.Open(mysql.New(Config)); err != nil {
+	if DB, err = gorm.Open(mysql.New(Config)); err != nil {
 		panic(err)
 	} else {
-		sqlDB, _ := db.DB()
+		sqlDB, _ := DB.DB()
 		sqlDB.SetMaxIdleConns(m.Max_idle_conns)
 		sqlDB.SetMaxOpenConns(m.Max_open_conns)
 		sqlDB.SetConnMaxLifetime(m.Max_lifetime)

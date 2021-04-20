@@ -1,17 +1,13 @@
 package main
 
 import (
-	_ "CSForum/init"
+	"CSForum/initialization"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	r := gin.Default()
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "pong",
-		})
-	})
-	r.Run()
+	var Router = gin.Default()
+	initialization.InitRouter(Router)
+	Router.Run()
 }
