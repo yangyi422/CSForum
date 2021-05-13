@@ -1,13 +1,13 @@
 package main
 
 import (
-	"CSForum/initialization"
+	"CSForum/router"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
 	var Router = gin.Default()
-	initialization.InitRouter(Router)
+	router.InitRouter(Router)
 	Router.Run()
 }

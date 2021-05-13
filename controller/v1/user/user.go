@@ -1,7 +1,7 @@
 package user
 
 import (
-	"CSForum/init"
+	"CSForum/initialization"
 	"CSForum/model/database"
 	"CSForum/model/req"
 	"CSForum/model/resp"
@@ -35,7 +35,7 @@ func Register(c *gin.Context) {
 		Status:      "",
 		HeaderImg:   register.HeaderImg,
 	}
-	if err := init.DB.Create(&user).Error; err != nil {
+	if err := initialization.DB.Create(&user).Error; err != nil {
 		resp.FailWithMessage(err.Error(), c)
 		return
 	}
