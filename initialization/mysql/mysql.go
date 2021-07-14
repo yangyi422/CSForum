@@ -1,4 +1,4 @@
-package initialization
+package init_mysql
 
 import (
 	"CSForum/config"

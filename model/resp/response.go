@@ -9,7 +9,7 @@ import (
 type Response struct {
 	Code int         `json:"code"`
 	Data interface{} `json:"data"`
-	Msg  string      `json:"msg"`
+	Msg  interface{} `json:"msg"`
 }
 
 // 定义响应码常量
@@ -21,7 +21,7 @@ const (
 )
 
 // 响应结果
-func Result(code int, data interface{}, msg string, c *gin.Context) {
+func Result(code int, data interface{}, msg interface{}, c *gin.Context) {
 	// 开始时间
 	c.JSON(http.StatusOK, Response{
 		code,
@@ -36,7 +36,7 @@ func Ok(c *gin.Context) {
 }
 
 // 带消息的成功响应
-func OkWithMessage(message string, c *gin.Context) {
+func OkWithMessage(message interface{}, c *gin.Context) {
 	Result(SUCCESS, map[string]interface{}{}, message, c)
 }
 
@@ -46,7 +46,7 @@ func OkWithData(data interface{}, c *gin.Context) {
 }
 
 // 带消息和数据的成功响应
-func OkWithDetailed(data interface{}, message string, c *gin.Context) {
+func OkWithDetailed(data interface{}, message interface{}, c *gin.Context) {
 	Result(SUCCESS, data, message, c)
 }
 
@@ -56,7 +56,7 @@ func Fail(code int, c *gin.Context) {
 }
 
 // 带消息的失败响应
-func FailWithMessage(code int, message string, c *gin.Context) {
+func FailWithMessage(code int, message interface{}, c *gin.Context) {
 	Result(code, map[string]interface{}{}, message, c)
 }
 
@@ -66,6 +66,6 @@ func FailWithData(code int, data interface{}, c *gin.Context) {
 }
 
 // 带消息和数据的失败响应
-func FailWithDetailed(code int, data interface{}, message string, c *gin.Context) {
+func FailWithDetailed(code int, data interface{}, message interface{}, c *gin.Context) {
 	Result(code, data, message, c)
 }
