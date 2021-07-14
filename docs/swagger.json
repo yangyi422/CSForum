@@ -1,0 +1,91 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {},
+        "license": {}
+    },
+    "paths": {
+        "/api/e/get_e_page": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "用户注册",
+                "parameters": [
+                    {
+                        "description": "请求参数",
+                        "name": "req",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/req.Register"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/resp.Register"
+                        }
+                    },
+                    "400": {
+                        "description": "返回No Found",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "500": {
+                        "description": "返回internal error",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "req.Register": {
+            "type": "object",
+            "required": [
+                "nick_name",
+                "password",
+                "username"
+            ],
+            "properties": {
+                "nick_name": {
+                    "description": "昵称",
+                    "type": "string"
+                },
+                "password": {
+                    "description": "密码",
+                    "type": "string"
+                },
+                "username": {
+                    "description": "用户名",
+                    "type": "string"
+                }
+            }
+        },
+        "resp.Register": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "description": "返回码",
+                    "type": "integer"
+                },
+                "message": {
+                    "description": "返回信息",
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

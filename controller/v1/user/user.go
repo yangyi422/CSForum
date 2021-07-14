@@ -11,7 +11,16 @@ import (
 	"github.com/go-playground/validator/v10"
 )
 
-// Register 用户注册
+// @Summary 用户注册
+// @Description
+// @Tags user
+// @Accept json
+// @Produce json
+// @Param req body req.Register true "请求参数"
+// @Success 200 {object} resp.Register
+// @Failure 400 {string} string "返回No Found"
+// @Failure 500 {string} string "返回internal error"
+// @Router /api/e/get_e_page [post]
 func Register(c *gin.Context) {
 	// 声明一个注册结构体的字段
 	var register = req.Register{}

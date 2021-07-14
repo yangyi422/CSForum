@@ -13,6 +13,7 @@ func main() {
 		fmt.Printf("初始化翻译器, err:%v\n", err)
 		return
 	}
+
 	var Router = gin.Default()
 	router.InitRouter(Router)
 	Router.Run()
