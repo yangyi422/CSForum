@@ -20,7 +20,7 @@ type Db_config struct {
 
 var (
 	MYSQL_PASSWORD string = "123456"
-	MYSQL_IP       string = "132.232.248.10"
+	MYSQL_IP       string = "47.106.215.114"
 	MYSQL_PORT     string = "3306"
 )
 

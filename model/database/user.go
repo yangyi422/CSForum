@@ -4,6 +4,7 @@ import (
 	"gorm.io/gorm"
 )
 
+// 用户结构体
 type User struct {
 	gorm.Model
 	UserId      uint64 `gorm:"column:user_id;index:idx_user_id;comment:'用户ID'"`    // 用户ID

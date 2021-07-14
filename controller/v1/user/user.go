@@ -13,11 +13,11 @@ import (
 func Register(c *gin.Context) {
 	var register req.Register
 	if err := c.ShouldBindJSON(&register); err != nil {
-		resp.FailWithMessage(err.Error(), c)
+		resp.FailWithMessage(resp.JSON_ERROR, err.Error(), c)
 		return
 	}
 	if err := util.Verify(register, util.RegisterVerify); err != nil {
-		resp.FailWithMessage(err.Error(), c)
+		resp.FailWithMessage(resp.CHECK_ERROR, err.Error(), c)
 		return
 	}
 	user := &database.User{
@@ -36,7 +36,7 @@ func Register(c *gin.Context) {
 		HeaderImg:   register.HeaderImg,
 	}
 	if err := initialization.DB.Create(&user).Error; err != nil {
-		resp.FailWithMessage(err.Error(), c)
+		resp.FailWithMessage(resp.OPERATION_ERROR, err.Error(), c)
 		return
 	}
 	resp.Ok(c)
