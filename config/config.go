@@ -4,6 +4,7 @@ import (
 	"time"
 )
 
+// 数据库连接信息
 type Db_config struct {
 	IP             string            `json:"ip" yaml:"ip"`
 	PORT           string            `json:"port" yaml:"port"`
@@ -18,14 +19,12 @@ type Db_config struct {
 	Log_type       string            `json:"log_type" yaml:"log_type"`
 }
 
+// 数据库信息
 var (
 	MYSQL_PASSWORD string = "123456"
 	MYSQL_IP       string = "47.106.215.114"
 	MYSQL_PORT     string = "3306"
-)
-
-var (
-	snk_db_config = map[string]string{
+	snk_db_config         = map[string]string{
 		"charset":          "utf8",
 		"maxAllowedPacket": "1073741824",
 		"multiStatements":  "true",
@@ -45,6 +44,7 @@ var (
 	}
 )
 
+// 获取数据库连接
 func (m *Db_config) Get_dsn() string {
 	var settings string
 	if len(m.Config) > 0 {
