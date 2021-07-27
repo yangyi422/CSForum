@@ -16,10 +16,10 @@ type Login struct {
 type List struct {
 	Code    int         `json:"code"`    // 返回码
 	Message interface{} `json:"message"` // 返回信息
-	Data    []user      `json:"data"`    // 数据
+	Data    []User      `json:"data"`    // 数据
 }
 
-type user struct {
+type User struct {
 	UserId      int64  `gorm:"column:user_id;index:idx_user_id;comment:'用户ID'"`    // 用户ID
 	Birthday    string `gorm:"column:birthday;comment:'用户生日'"`                     // 用户生日
 	Age         int    `gorm:"column:age;comment:'用户年龄'"`                          // 用户年龄

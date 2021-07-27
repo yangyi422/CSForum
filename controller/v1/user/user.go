@@ -160,3 +160,36 @@ func Login(c *gin.Context) {
 // 	response.Message = "用户登录成功"
 // 	resp.Send(response, c)
 // }
+
+// @Summary 获取用户列表
+// @Description
+// @Tags user
+// @Accept json
+// @Produce json
+// @Param username query string true "用户名"
+// @Param status query string true "状态"
+// @Success 200 {object} resp.List
+// @Failure 400 {string} string "返回No Found"
+// @Failure 500 {string} string "返回internal error"
+// @Router /user/list [get]
+func List(c *gin.Context) {
+	// 声明注册结构体的字段
+	var response = resp.List{}
+	// 获取Url中的参数
+	//var username = c.Query("username")
+	//var status = c.Query("status")
+	// 获取用户列表
+	var user = []resp.User{}
+	if err := mysql.GetMysql().Find(&user).Error; err != nil {
+		logger.Errorf("查询所有用户信息错误，错误为:%+v", err.Error())
+		response.Code = resp.OPERATION_ERROR
+		response.Message = "查询所有用户信息错误"
+		resp.Send(response, c)
+		return
+	}
+
+	response.Code = resp.SUCCESS
+	response.Message = "查询所有用户信息成功"
+	response.Data = user
+	resp.Send(response, c)
+}
