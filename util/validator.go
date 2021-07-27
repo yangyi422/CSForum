@@ -1,10 +1,12 @@
 package util
 
 import (
+	"CSForum/model/resp"
 	"fmt"
 	"reflect"
 	"strings"
 
+	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
 	"github.com/go-playground/locales/en"
 	"github.com/go-playground/locales/zh"
@@ -67,4 +69,18 @@ func RemoveTopStruct(fields map[string]string) map[string]string {
 		res[field[strings.Index(field, ".")+1:]] = err
 	}
 	return res
+}
+
+// CheckOutReqJsonErr 检查请求参数的json错误
+func CheckOutReqJsonErr(err error, c *gin.Context) interface{} {
+	// 获取validator.ValidationErrors类型的errors
+	errs, ok := err.(validator.ValidationErrors)
+	if !ok {
+		// 非validator.ValidationErrors类型错误直接返回
+		resp.FailWithMessage(resp.JSON_ERROR, err.Error(), c)
+		return err.Error()
+	}
+	// validator.ValidationErrors类型错误则进行翻译
+	resp.FailWithMessage(resp.CHECK_ERROR, RemoveTopStruct(errs.Translate(Trans)), c)
+	return RemoveTopStruct(errs.Translate(Trans))
 }

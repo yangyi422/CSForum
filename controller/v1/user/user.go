@@ -1,6 +1,7 @@
 package user
 
 import (
+	"CSForum/initialization/logger"
 	init_mysql "CSForum/initialization/mysql"
 	"CSForum/model/database"
 	"CSForum/model/req"
@@ -8,7 +9,6 @@ import (
 	"CSForum/util"
 
 	"github.com/gin-gonic/gin"
-	"github.com/go-playground/validator/v10"
 )
 
 // @Summary 用户注册
@@ -26,15 +26,7 @@ func Register(c *gin.Context) {
 	var register = req.Register{}
 	// 使用上面声明的字段来接收请求发送的JSON字段
 	if err := c.ShouldBindJSON(&register); err != nil {
-		// 获取validator.ValidationErrors类型的errors
-		errs, ok := err.(validator.ValidationErrors)
-		if !ok {
-			// 非validator.ValidationErrors类型错误直接返回
-			resp.FailWithMessage(resp.JSON_ERROR, err.Error(), c)
-			return
-		}
-		// validator.ValidationErrors类型错误则进行翻译
-		resp.FailWithMessage(resp.CHECK_ERROR, util.RemoveTopStruct(errs.Translate(util.Trans)), c)
+		logger.Errorf("json解析错误，错误为:%+v", util.CheckOutReqJsonErr(err, c))
 		return
 	}
 	// 声明一个用户结构体,并初始化相关字段

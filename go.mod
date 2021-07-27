@@ -18,12 +18,15 @@ require (
 	github.com/leodido/go-urn v1.2.1 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
 	github.com/mattn/go-isatty v0.0.13 // indirect
+	github.com/natefinch/lumberjack v2.0.0+incompatible // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
 	github.com/swaggo/gin-swagger v1.3.0
 	github.com/swaggo/swag v1.6.7
 	github.com/ugorji/go v1.2.6 // indirect
 	github.com/urfave/cli/v2 v2.3.0 // indirect
+	go.uber.org/tools v0.0.0-20190618225709-2cfd321de3ee // indirect
+	go.uber.org/zap v1.18.1 // indirect
 	golang.org/x/crypto v0.0.0-20210711020723-a769d52b0f97 // indirect
 	golang.org/x/net v0.0.0-20210614182718-04defd469f4e // indirect
 	golang.org/x/sys v0.0.0-20210630005230-0f9fa26af87c // indirect
@@ -31,4 +34,5 @@ require (
 	google.golang.org/protobuf v1.27.1 // indirect
 	gorm.io/driver/mysql v1.0.5
 	gorm.io/gorm v1.21.8
+	honnef.co/go/tools v0.0.1-2019.2.3 // indirect
 )
