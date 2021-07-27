@@ -1,4 +1,4 @@
-package init_mysql
+package mysql
 
 import (
 	"CSForum/config"
@@ -13,12 +13,12 @@ var DB *gorm.DB
 
 // 初始化
 func init() {
-	init_mysql()
-	get_mysql_tables(DB)
+	initMysql()
+	getMysqlTables(DB)
 }
 
 // 初始化mysql
-func init_mysql() {
+func initMysql() {
 	// 数据库连接的相关设置
 	m := config.CS_forum_db
 	// 获取数据库连接
@@ -45,7 +45,7 @@ func init_mysql() {
 }
 
 // 生成mysql的表
-func get_mysql_tables(db *gorm.DB) {
+func getMysqlTables(db *gorm.DB) {
 	// 根据结构体来生成表结构
 	err := db.Set("gorm:table_options", "ENGINE=InnoDB DEFAULT CHARSET=utf8").AutoMigrate(
 		new(model_database.User),
@@ -54,4 +54,8 @@ func get_mysql_tables(db *gorm.DB) {
 		fmt.Println("register mysql table failed:" + err.Error())
 		panic("register mysql table failed:" + err.Error())
 	}
+}
+
+func GetMysql() *gorm.DB {
+	return DB
 }

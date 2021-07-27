@@ -73,14 +73,19 @@ func RemoveTopStruct(fields map[string]string) map[string]string {
 
 // CheckOutReqJsonErr 检查请求参数的json错误
 func CheckOutReqJsonErr(err error, c *gin.Context) interface{} {
+	var response = resp.Register{}
 	// 获取validator.ValidationErrors类型的errors
 	errs, ok := err.(validator.ValidationErrors)
 	if !ok {
 		// 非validator.ValidationErrors类型错误直接返回
-		resp.FailWithMessage(resp.JSON_ERROR, err.Error(), c)
+		response.Code = resp.JSON_ERROR
+		response.Message = err.Error()
+		resp.Send(response, c)
 		return err.Error()
 	}
 	// validator.ValidationErrors类型错误则进行翻译
-	resp.FailWithMessage(resp.CHECK_ERROR, RemoveTopStruct(errs.Translate(Trans)), c)
+	response.Code = resp.JSON_ERROR
+	response.Message = RemoveTopStruct(errs.Translate(Trans))
+	resp.Send(response, c)
 	return RemoveTopStruct(errs.Translate(Trans))
 }
