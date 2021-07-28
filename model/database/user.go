@@ -21,3 +21,8 @@ type User struct {
 	Status      string `gorm:"column:status;comment:'用户状态'"`                       // 用户状态(0:未激活)
 	HeaderImg   string `gorm:"column:header_img;comment:'用户头像'"`                   // 用户头像
 }
+
+// TableName 设置表名称
+func (User) TableName() string {
+	return "user"
+}

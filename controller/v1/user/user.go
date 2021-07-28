@@ -176,20 +176,28 @@ func List(c *gin.Context) {
 	// 声明注册结构体的字段
 	var response = resp.List{}
 	// 获取Url中的参数
-	//var username = c.Query("username")
-	//var status = c.Query("status")
+	var username = c.Query("username")
+	var status = c.Query("status")
+	// 设置查询表名称
+	var subQuery = mysql.GetMysql().Table("user")
+	// 根据条件，添加查询条件
+	if len(username) != 0 {
+		subQuery = subQuery.Where("username = ?", username)
+	}
+	if len(username) != 0 {
+		subQuery = subQuery.Where("status = ?", status)
+	}
 	// 获取用户列表
-	var user = []resp.User{}
-	if err := mysql.GetMysql().Find(&user).Error; err != nil {
+	var data = []resp.ListData{}
+	if err := subQuery.Find(&data).Error; err != nil {
 		logger.Errorf("查询所有用户信息错误，错误为:%+v", err.Error())
 		response.Code = resp.OPERATION_ERROR
 		response.Message = "查询所有用户信息错误"
 		resp.Send(response, c)
 		return
 	}
-
 	response.Code = resp.SUCCESS
 	response.Message = "查询所有用户信息成功"
-	response.Data = user
+	response.Data = data
 	resp.Send(response, c)
 }
