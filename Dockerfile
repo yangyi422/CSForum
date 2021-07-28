@@ -6,5 +6,5 @@ ENV GO111MODULE=on
 ENV GOPROXY="https://goproxy.io"
 RUN go build .
 
-EXPOSE 8000
+EXPOSE 8080
 ENTRYPOINT ["./CSForum"]
