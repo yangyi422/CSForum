@@ -7,6 +7,7 @@ import (
 )
 
 func InitUserRouter(Router *gin.RouterGroup) {
+	// 声明用户路由组 并注册对应路由
 	UserRouter := Router.Group("user")
 	{
 		UserRouter.POST("register", user.Register)
